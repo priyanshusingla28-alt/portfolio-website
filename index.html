@@ -1,84 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Web Studio</title>
-  <style>
-    body{
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f5f5f5;
-      color: #111;
-    }
-    header{
-      background: white;
-      padding: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .btn{
-      background: black;
-      color: white;
-      padding: 10px 18px;
-      border-radius: 12px;
-      text-decoration: none;
-    }
-    .hero,.cards{
-      max-width: 1000px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-    .hero{
-      text-align: center;
-    }
-    .grid{
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-    .card{
-      background: white;
-      padding: 20px;
-      border-radius: 18px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-    @media(min-width:768px){
-      .grid{
-        grid-template-columns: repeat(3,1fr);
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Influencer Collaboration Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #111827;
+        }
+
+        input, textarea, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .offers {
+            margin-top: 30px;
+        }
+
+        .offer-card {
+            background: #f9fafb;
+            border-left: 5px solid #2563eb;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h2>Your Web Studio</h2>
-    <a class="btn" href="#">Hire Me</a>
-  </header>
 
-  <section class="hero">
-    <h1>Modern Websites for Business</h1>
-    <p>Clean, fast and mobile-friendly websites.</p>
-    <a class="btn" href="#">Get Started</a>
-  </section>
+<header>
+    Influencer Collaboration Hub
+</header>
 
-  <section class="cards">
-    <div class="grid">
-      <div class="card">
-        <h3>Business Website</h3>
-        <p>Professional website for business.</p>
-      </div>
-      <div class="card">
-        <h3>Portfolio</h3>
-        <p>Show your work professionally.</p>
-      </div>
-      <div class="card">
-        <h3>Landing Page</h3>
-        <p>Single page promotion website.</p>
-      </div>
+<div class="container">
+    <h2>Send Collaboration Offer</h2>
+    
+    <input type="text" id="brandName" placeholder="Brand Name">
+    <input type="text" id="email" placeholder="Email">
+    <textarea id="message" rows="5" placeholder="Write collaboration offer..."></textarea>
+    <button onclick="addOffer()">Send Offer</button>
+
+    <div class="offers">
+        <h2>Incoming Offers</h2>
+        <div id="offersList"></div>
     </div>
-  </section>
+</div>
+
+<script>
+    function addOffer() {
+        let brand = document.getElementById("brandName").value;
+        let email = document.getElementById("email").value;
+        let message = document.getElementById("message").value;
+
+        if (brand === "" || email === "" || message === "") {
+            alert("Please fill all fields");
+            return;
+        }
+
+        let offerCard = document.createElement("div");
+        offerCard.className = "offer-card";
+        offerCard.innerHTML = `
+            <h3>${brand}</h3>
+            <p><strong>Email:</strong> ${email}</p>
+            <p>${message}</p>
+        `;
+
+        document.getElementById("offersList").appendChild(offerCard);
+
+        document.getElementById("brandName").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("message").value = "";
+    }
+</script>
+
 </body>
 </html>
